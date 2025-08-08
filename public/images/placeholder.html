@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Placeholders</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .placeholder {
+            width: 400px;
+            height: 300px;
+            background: linear-gradient(135deg, #3b82f6, #1e40af);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .placeholder.mobile {
+            background: linear-gradient(135deg, #8b5cf6, #4c1d95);
+        }
+        h2 {
+            margin: 0 0 10px 0;
+            font-size: 24px;
+        }
+        p {
+            margin: 0;
+            font-size: 16px;
+            max-width: 80%;
+        }
+        .icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="placeholder">
+            <div class="icon">💻</div>
+            <h2>Formula One Dashboard</h2>
+            <p>Analytics and business intelligence platform for driving schools</p>
+        </div>
+        
+        <div class="placeholder">
+            <div class="icon">📊</div>
+            <h2>Financial Modeling</h2>
+            <p>Scenario planning and revenue forecasting tools</p>
+        </div>
+        
+        <div class="placeholder">
+            <div class="icon">👨‍💼</div>
+            <h2>Instructor Management</h2>
+            <p>Schedule optimization and performance tracking</p>
+        </div>
+        
+        <div class="placeholder mobile">
+            <div class="icon">📱</div>
+            <h2>Mobile Booking App</h2>
+            <p>Uber-style lesson booking interface for students</p>
+        </div>
+        
+        <div class="placeholder mobile">
+            <div class="icon">🗺️</div>
+            <h2>Real-time Tracking</h2>
+            <p>GPS tracking and route optimization for driving lessons</p>
+        </div>
+        
+        <div class="placeholder mobile">
+            <div class="icon">💬</div>
+            <h2>In-app Messaging</h2>
+            <p>Secure communication between students and instructors</p>
+        </div>
+    </div>
+</body>
+</html>

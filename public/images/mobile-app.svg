@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="400" height="800" viewBox="0 0 400 800" xmlns="http://www.w3.org/2000/svg">
+  <!-- Phone Frame -->
+  <rect width="400" height="800" rx="40" ry="40" fill="#1e1e1e"/>
+  <rect x="10" y="10" width="380" height="780" rx="30" ry="30" fill="#f8fafc"/>
+  
+  <!-- Status Bar -->
+  <rect x="10" y="10" width="380" height="40" rx="30" ry="30" fill="#7e22ce"/>
+  <circle cx="40" cy="30" r="8" fill="white"/>
+  <rect x="300" y="22" width="30" height="16" rx="8" ry="8" fill="white"/>
+  <text x="200" y="32" font-family="Arial" font-size="14" fill="white" text-anchor="middle">12:30</text>
+  
+  <!-- App Header -->
+  <rect x="10" y="50" width="380" height="80" fill="#8b5cf6"/>
+  <text x="40" y="95" font-family="Arial" font-size="22" font-weight="bold" fill="white">DriveConnect</text>
+  <circle cx="350" cy="90" r="20" fill="white" opacity="0.2"/>
+  <text x="350" y="97" font-family="Arial" font-size="20" font-weight="bold" fill="white" text-anchor="middle">JD</text>
+  
+  <!-- Main Content -->
+  <rect x="30" y="150" width="340" height="120" rx="10" ry="10" fill="white" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="50" y="180" font-family="Arial" font-size="18" font-weight="bold" fill="#334155">Your Next Lesson</text>
+  <text x="50" y="210" font-family="Arial" font-size="16" fill="#64748b">Today, 3:00 PM - 4:30 PM</text>
+  <text x="50" y="240" font-family="Arial" font-size="16" fill="#64748b">Instructor: Sarah Johnson</text>
+  <rect x="290" y="190" width="60" height="60" rx="30" ry="30" fill="#8b5cf6"/>
+  <text x="320" y="225" font-family="Arial" font-size="24" fill="white" text-anchor="middle">→</text>
+  
+  <!-- Book a Lesson Section -->
+  <rect x="30" y="290" width="340" height="200" rx="10" ry="10" fill="white" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="50" y="320" font-family="Arial" font-size="18" font-weight="bold" fill="#334155">Book a Lesson</text>
+  
+  <!-- Date Selector -->
+  <rect x="50" y="340" width="80" height="80" rx="10" ry="10" fill="#f1f5f9"/>
+  <text x="90" y="370" font-family="Arial" font-size="16" font-weight="bold" fill="#334155" text-anchor="middle">Mon</text>
+  <text x="90" y="395" font-family="Arial" font-size="18" font-weight="bold" fill="#8b5cf6" text-anchor="middle">12</text>
+  
+  <rect x="140" y="340" width="80" height="80" rx="10" ry="10" fill="#ede9fe"/>
+  <text x="180" y="370" font-family="Arial" font-size="16" font-weight="bold" fill="#334155" text-anchor="middle">Tue</text>
+  <text x="180" y="395" font-family="Arial" font-size="18" font-weight="bold" fill="#8b5cf6" text-anchor="middle">13</text>
+  
+  <rect x="230" y="340" width="80" height="80" rx="10" ry="10" fill="#f1f5f9"/>
+  <text x="270" y="370" font-family="Arial" font-size="16" font-weight="bold" fill="#334155" text-anchor="middle">Wed</text>
+  <text x="270" y="395" font-family="Arial" font-size="18" font-weight="bold" fill="#8b5cf6" text-anchor="middle">14</text>
+  
+  <!-- Time Slots -->
+  <rect x="50" y="440" width="100" height="40" rx="20" ry="20" fill="#f1f5f9"/>
+  <text x="100" y="465" font-family="Arial" font-size="14" fill="#64748b" text-anchor="middle">9:00 AM</text>
+  
+  <rect x="160" y="440" width="100" height="40" rx="20" ry="20" fill="#ede9fe"/>
+  <text x="210" y="465" font-family="Arial" font-size="14" fill="#8b5cf6" text-anchor="middle">11:00 AM</text>
+  
+  <rect x="270" y="440" width="100" height="40" rx="20" ry="20" fill="#f1f5f9"/>
+  <text x="320" y="465" font-family="Arial" font-size="14" fill="#64748b" text-anchor="middle">2:00 PM</text>
+  
+  <!-- Progress Section -->
+  <rect x="30" y="510" width="340" height="120" rx="10" ry="10" fill="white" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="50" y="540" font-family="Arial" font-size="18" font-weight="bold" fill="#334155">Your Progress</text>
+  
+  <!-- Progress Bar -->
+  <rect x="50" y="560" width="300" height="20" rx="10" ry="10" fill="#f1f5f9"/>
+  <rect x="50" y="560" width="180" height="20" rx="10" ry="10" fill="#8b5cf6"/>
+  <text x="50" y="600" font-family="Arial" font-size="16" fill="#64748b">12 of 20 lessons completed</text>
+  
+  <!-- Bottom Navigation -->
+  <rect x="10" y="730" width="380" height="60" rx="0" ry="0" fill="white" stroke="#e2e8f0" stroke-width="1"/>
+  
+  <circle cx="80" cy="760" r="20" fill="#8b5cf6" opacity="0.2"/>
+  <text x="80" y="765" font-family="Arial" font-size="12" fill="#8b5cf6" text-anchor="middle">Home</text>
+  
+  <circle cx="200" cy="760" r="20" fill="#f1f5f9"/>
+  <text x="200" y="765" font-family="Arial" font-size="12" fill="#64748b" text-anchor="middle">Book</text>
+  
+  <circle cx="320" cy="760" r="20" fill="#f1f5f9"/>
+  <text x="320" y="765" font-family="Arial" font-size="12" fill="#64748b" text-anchor="middle">Profile</text>
+</svg>

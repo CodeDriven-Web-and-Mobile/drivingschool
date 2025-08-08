@@ -1,4 +1,8 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Driving School Dashboard
+
+A Next.js application for visualizing and managing driving school student registration data. This dashboard provides insights into student demographics by age group and gender, along with scenario planning for different student segments.
+
+This project is built with [Next.js](https://nextjs.org) and bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
 
