@@ -29,7 +29,7 @@ export const defaultProfitParams: ProfitCalculationParams = {
   authenticationPerUserPerDay: -1,
   websiteCostPerDay: -40,
   postgresCostPerDay: -40,
-  customerServiceCostPerDay: -54.8, // 100000/365/5 = ~54.8 per day
+  customerServiceCostPerDay: -50, // 100000/365/5 = ~54.8 per day
   accountingCostPerDay: -1000,
   marketingCostPerDay: -1000,
   cellphonePlanCost: 70,
@@ -49,6 +49,20 @@ export interface ProfitCalculationResult {
     techInfrastructureCosts: number;
     operationalCosts: number;
     additionalRevenue: number;
+  };
+  // Detailed sub-cost breakdowns for UI
+  techBreakdown: {
+    googleMaps: number;
+    authentication: number;
+    website: number;
+    database: number;
+  };
+  operationalBreakdown: {
+    customerService: number;
+    accounting: number;
+    marketing: number;
+    healthBenefits: number;
+    cellphonePlan: number;
   };
   profitByStudentPercentage: Array<{
     percentage: number;
@@ -72,8 +86,10 @@ export function calculateProfit(
   
   // Calculate revenue
   const lessonRevenue = totalLessonsPerMonth * params.lessonIncome;
-  const cellphonePlanRevenue = registeredStudents * params.cellphonePlanCost;
-  const totalRevenue = lessonRevenue + cellphonePlanRevenue;
+  const totalRevenue = lessonRevenue;
+  
+  // Cellphone plan is a cost, not revenue
+  const cellphonePlanCost = registeredStudents * Math.abs(params.cellphonePlanCost);
   
   // Calculate costs
   // Calculate instructor cost per lesson from lesson income and instructor percentage
@@ -82,20 +98,19 @@ export function calculateProfit(
   const insuranceCosts = totalLessonsPerMonth * Math.abs(params.insurancePerLesson);
   
   // Tech infrastructure costs (monthly)
-  const techInfrastructureCosts = (
-    (registeredStudents * Math.abs(params.googleMapsPerUserPerDay) * 30) + // Google Maps
-    (registeredStudents * Math.abs(params.authenticationPerUserPerDay) * 30) + // Authentication
-    (Math.abs(params.websiteCostPerDay) * 30) + // Website
-    (Math.abs(params.postgresCostPerDay) * 30) // Postgres
-  );
+  const tech_googleMaps = registeredStudents * Math.abs(params.googleMapsPerUserPerDay) * 30;
+  const tech_authentication = registeredStudents * Math.abs(params.authenticationPerUserPerDay) * 30;
+  const tech_website = Math.abs(params.websiteCostPerDay) * 30;
+  const tech_database = Math.abs(params.postgresCostPerDay) * 30;
+  const techInfrastructureCosts = tech_googleMaps + tech_authentication + tech_website + tech_database;
   
   // Operational costs (monthly)
-  const operationalCosts = (
-    (Math.abs(params.customerServiceCostPerDay) * 30) + // Customer Service
-    (Math.abs(params.accountingCostPerDay) * 30) + // Accounting
-    (Math.abs(params.marketingCostPerDay) * 30) + // Marketing
-    (instructorsNeeded * Math.abs(params.healthPerDriverPerMonth)) // Health benefits
-  );
+  const op_customerService = Math.abs(params.customerServiceCostPerDay) * 30;
+  const op_accounting = Math.abs(params.accountingCostPerDay) * 30;
+  const op_marketing = Math.abs(params.marketingCostPerDay) * 30;
+  const op_healthBenefits = instructorsNeeded * Math.abs(params.healthPerDriverPerMonth);
+  const op_cellphonePlan = cellphonePlanCost;
+  const operationalCosts = op_customerService + op_accounting + op_marketing + op_healthBenefits + op_cellphonePlan;
   
   // Calculate total costs and profit
   const totalCosts = instructorCosts + insuranceCosts + techInfrastructureCosts + operationalCosts;
@@ -111,8 +126,8 @@ export function calculateProfit(
     
     // Revenue calculations
     const lessonRevenueAtPercentage = lessonsAtPercentage * params.lessonIncome;
-    const cellphonePlanRevenueAtPercentage = studentsAtPercentage * params.cellphonePlanCost;
-    const totalRevenueAtPercentage = lessonRevenueAtPercentage + cellphonePlanRevenueAtPercentage;
+    // Cellphone plan is a cost, not revenue
+    const totalRevenueAtPercentage = lessonRevenueAtPercentage;
     
     // Cost calculations - calculate instructor cost from lesson income and percentage
     const instructorCostPerLesson = params.lessonIncome * (params.instructorCostPercentage / 100);
@@ -128,11 +143,13 @@ export function calculateProfit(
     );
     
     // Operational costs
+    const cellphonePlanCostAtPercentage = studentsAtPercentage * Math.abs(params.cellphonePlanCost);
     const operationalCostsAtPercentage = (
       (Math.abs(params.customerServiceCostPerDay) * 30) +
       (Math.abs(params.accountingCostPerDay) * 30) +
       (Math.abs(params.marketingCostPerDay) * 30) +
-      (instructorsNeededAtPercentage * Math.abs(params.healthPerDriverPerMonth))
+      (instructorsNeededAtPercentage * Math.abs(params.healthPerDriverPerMonth)) +
+      cellphonePlanCostAtPercentage // Add cellphone plan cost
     );
     
     const totalCostsAtPercentage = instructorCostsAtPercentage + insuranceCostsAtPercentage + 
@@ -157,7 +174,20 @@ export function calculateProfit(
       insuranceCosts,
       techInfrastructureCosts,
       operationalCosts,
-      additionalRevenue: cellphonePlanRevenue
+      additionalRevenue: 0 // Cellphone plan is now a cost, not revenue
+    },
+    techBreakdown: {
+      googleMaps: tech_googleMaps,
+      authentication: tech_authentication,
+      website: tech_website,
+      database: tech_database
+    },
+    operationalBreakdown: {
+      customerService: op_customerService,
+      accounting: op_accounting,
+      marketing: op_marketing,
+      healthBenefits: op_healthBenefits,
+      cellphonePlan: op_cellphonePlan
     },
     profitByStudentPercentage
   };

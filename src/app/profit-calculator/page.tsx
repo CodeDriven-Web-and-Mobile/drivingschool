@@ -293,7 +293,7 @@ const ProfitCalculator = () => {
             
             <div className="mb-4">
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Customer Service/Day ($)
+                Operation/user/Day ($)
               </label>
               <input
                 type="number"
@@ -360,6 +360,23 @@ const ProfitCalculator = () => {
         
         {/* Results */}
         <div className="bg-white p-6 rounded-lg shadow-md lg:col-span-2">
+          <h2 className="text-xl font-bold text-gray-800 mb-4">Profit Calculator Results</h2>
+          
+          {/* Info Section */}
+          <div className="bg-blue-50 p-4 rounded-md mb-6 border border-blue-200">
+            <h3 className="text-lg font-semibold text-blue-800 mb-2">How Calculations Work</h3>
+            <div className="text-sm text-blue-700 space-y-2">
+              <p><strong>Revenue:</strong> Calculated as (Registered Students × Lessons per Month × Lesson Income)</p>
+              <p><strong>Registered Students:</strong> Calculated as Total Potential Students × (Percentage Registered Students ÷ 100)</p>
+              <p><strong>Instructor Costs:</strong> Calculated as (Lesson Income × Instructor Percentage) × Total Lessons</p>
+              <p><strong>Instructors Needed:</strong> Calculated as Total Lessons per Month ÷ (Lessons per Day per Instructor × 22 working days)</p>
+              <p><strong>Tech Infrastructure Costs:</strong> Sum of Google Maps, Authentication, Website, and Database costs per month</p>
+              <p><strong>Operational Costs:</strong> Sum of Operation costs, Accounting costs, Marketing costs, Health Benefits, and Cellphone Plan costs</p>
+              <p><strong>Net Profit:</strong> Total Revenue - Total Costs</p>
+              <p><strong>Profit Margin:</strong> (Net Profit ÷ Total Revenue) × 100%</p>
+            </div>
+          </div>
+          
           <h2 className="text-xl font-semibold text-gray-700 mb-4">Profit Estimation Results</h2>
           
           {profitResult && (
@@ -402,7 +419,7 @@ const ProfitCalculator = () => {
               
               {/* Profit by Student Percentage Chart */}
               {isClient && (
-                <div className="mb-8">
+                <div className="mb-16">  {/* Increased margin-bottom from mb-8 to mb-16 */}
                   <h3 className="text-lg font-semibold text-gray-700 mb-2">Profit by Student Registration Percentage</h3>
                   <div className="h-64">
                     <BarChart 
@@ -420,6 +437,8 @@ const ProfitCalculator = () => {
                   </div>
                 </div>
               )}
+              
+              <div className="mt-12 mb-8"></div> {/* Added extra spacing div */}
               
               {/* Cost Breakdown */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -485,11 +504,50 @@ const ProfitCalculator = () => {
                           -{formatCurrency(Math.abs(profitResult.breakdownByCategory.techInfrastructureCosts))}
                         </td>
                       </tr>
+                      {/* Tech Infrastructure breakdown */}
+                      <tr>
+                        <td className="py-1 pl-6 text-sm text-gray-500">- Maps</td>
+                        <td className="py-1 text-right text-sm text-red-600">-{formatCurrency(Math.abs(profitResult.techBreakdown.googleMaps))}</td>
+                      </tr>
+                      <tr>
+                        <td className="py-1 pl-6 text-sm text-gray-500">- Authentication</td>
+                        <td className="py-1 text-right text-sm text-red-600">-{formatCurrency(Math.abs(profitResult.techBreakdown.authentication))}</td>
+                      </tr>
+                      <tr>
+                        <td className="py-1 pl-6 text-sm text-gray-500">- Website</td>
+                        <td className="py-1 text-right text-sm text-red-600">-{formatCurrency(Math.abs(profitResult.techBreakdown.website))}</td>
+                      </tr>
+                      <tr>
+                        <td className="py-1 pl-6 text-sm text-gray-500">- Database</td>
+                        <td className="py-1 text-right text-sm text-red-600">-{formatCurrency(Math.abs(profitResult.techBreakdown.database))}</td>
+                      </tr>
+                      
                       <tr>
                         <td className="py-2 text-gray-700">Operational Costs</td>
                         <td className="py-2 text-right font-medium text-red-600">
                           -{formatCurrency(Math.abs(profitResult.breakdownByCategory.operationalCosts))}
                         </td>
+                      </tr>
+                      {/* Operational breakdown */}
+                      <tr>
+                        <td className="py-1 pl-6 text-sm text-gray-500">- Customer Service</td>
+                        <td className="py-1 text-right text-sm text-red-600">-{formatCurrency(Math.abs(profitResult.operationalBreakdown.customerService))}</td>
+                      </tr>
+                      <tr>
+                        <td className="py-1 pl-6 text-sm text-gray-500">- Accounting</td>
+                        <td className="py-1 text-right text-sm text-red-600">-{formatCurrency(Math.abs(profitResult.operationalBreakdown.accounting))}</td>
+                      </tr>
+                      <tr>
+                        <td className="py-1 pl-6 text-sm text-gray-500">- Marketing</td>
+                        <td className="py-1 text-right text-sm text-red-600">-{formatCurrency(Math.abs(profitResult.operationalBreakdown.marketing))}</td>
+                      </tr>
+                      <tr>
+                        <td className="py-1 pl-6 text-sm text-gray-500">- Health Benefits</td>
+                        <td className="py-1 text-right text-sm text-red-600">-{formatCurrency(Math.abs(profitResult.operationalBreakdown.healthBenefits))}</td>
+                      </tr>
+                      <tr>
+                        <td className="py-1 pl-6 text-sm text-gray-500">- Cellphone Plan</td>
+                        <td className="py-1 text-right text-sm text-red-600">-{formatCurrency(Math.abs(profitResult.operationalBreakdown.cellphonePlan))}</td>
                       </tr>
                       <tr className="border-t">
                         <td className="py-2 font-bold text-gray-800">Net Profit</td>
